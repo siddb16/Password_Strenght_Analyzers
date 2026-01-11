@@ -1,5 +1,5 @@
-Password Strength Auditor (But Smarter)
-Why This Project Is Needed Today
+#Password Strength Auditor (But Smarter)
+##Why This Project Is Needed Today
 
 Weak passwords remain one of the biggest entry points for cyber-attacks.
 Even in 2026, people still use variations like “P@ssw0rd123”, believing they are secure just because they contain symbols. Attackers, however, use advanced cracking techniques, massive leaked-password datasets, and pattern recognition — meaning simple substitutions and predictable sequences are cracked in seconds.
