@@ -5,10 +5,8 @@ import string
 # --- Configuration & Common Data ---
 # A small sample of "leaked" or common passwords for demonstration.
 # In a real app, you might load this from a 'rockyou.txt' file.
-COMMON_PASSWORDS = {
-    "password", "123456", "12345678", "qwerty", "admin", "welcome",
-    "login", "football", "monkey", "dragon", "iloveyou", "master"
-}
+
+COMMON_PASSWORDS =("rockyou.txt","r")
 
 # Common keyboard patterns (English QWERTY)
 KEYBOARD_PATTERNS = [
@@ -57,26 +55,39 @@ def check_patterns(password):
                 
     return found_patterns
 
+def load_substitutions(file_path="subs.txt"):
+    subs = {}
+    try:
+        with open("subs.txt", "r") as f:
+            for line in f:
+                line = line.strip()
+                if "=" in line:
+                    key, value = line.split("=", 1)
+                    subs[key] = value
+    except FileNotFoundError:
+        print("[!] substitution file not found.")
+    return subs
+
 def check_substitutions(password):
     """
     Checks if the password is a common word disguised with simple numbers/symbols.
     e.g., 'P@ssw0rd' -> 'password'
     """
     # Simple L33t speak mapping
-    subs = {'@': 'a', '0': 'o', '1': 'l', '$': 's', '!': 'i', '3': 'e'}
+    subs = load_substitutions()
     
     normalized = password.lower()
     for symbol, letter in subs.items():
         normalized = normalized.replace(symbol, letter)
         
     if normalized in COMMON_PASSWORDS:
+        # print("Hello World")
         return True, normalized
     return False, ""
 
 def audit_password(password):
-    """
-    Main logic to score the password and generate feedback.
-    """
+    # Main logic to score the password and generate feedback.
+    
     score = 0
     feedback = []
     suggestions = []
@@ -162,7 +173,7 @@ def audit_password(password):
 
 def main():
     print("=========================================")
-    print("🔒 SmartGuard: Password Strength Auditor")
+    print(" SmartGuard: Password Strength Auditor")
     print("=========================================")
     print("Type 'exit' to quit.\n")
 
@@ -180,12 +191,12 @@ def main():
         print(f"Rating: {result['rating']}")
         
         if result['feedback']:
-            print("\n⚠️  Issues Found:")
+            print("\n  Issues Found:")
             for item in result['feedback']:
                 print(f"   - {item}")
         
         if result['suggestions']:
-            print("\n💡 Suggestions:")
+            print("\n Suggestions:")
             for item in result['suggestions']:
                 print(f"   - {item}")
                 
