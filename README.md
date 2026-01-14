@@ -1,73 +1,91 @@
-#Password Strength Auditor (But Smarter)
-##Why This Project Is Needed Today
+# Password Strength Auditor (But Smarter)
 
-Weak passwords remain one of the biggest entry points for cyber-attacks.
-Even in 2026, people still use variations like “P@ssw0rd123”, believing they are secure just because they contain symbols. Attackers, however, use advanced cracking techniques, massive leaked-password datasets, and pattern recognition — meaning simple substitutions and predictable sequences are cracked in seconds.
+## 🌍 Why This Project Is Needed Today
+Weak passwords remain one of the biggest reasons for cyber-attacks globally.  
+Most users still rely on predictable patterns like **“P@ssw0rd”**, believing that adding symbols makes a password secure.
 
-In a world where:
+Attackers today use:
+- Large leaked-password databases  
+- Smart brute-forcing tools  
+- Pattern recognition (keyboard sequences, substitutions, repetition)  
+- Behavioral analysis  
 
-Credential stuffing attacks are increasing,
+…which makes simple passwords crackable within seconds.
 
-Leaked databases grow every day,
+Cybersecurity now demands **real-world password auditing**, not textbook checks.  
+This project brings exactly that: a smarter, attacker-like password analyzer.
 
-Automation has made brute-forcing smarter,
+---
 
-And cyber hygiene is becoming a mandatory skill for everyone,
+## 🔐 Project Overview
+**Password Strength Auditor (But Smarter)** is a Python tool that evaluates passwords using real attacker logic.  
+It detects:
 
-a smarter password auditor is no longer optional — it’s essential.
+- Disguised common passwords (`p@ssw0rd` → "password")
+- Keyboard sequences (`qwerty`, `asdf`, `12345`)
+- Repeated characters (`aaaa`, `1111`)
+- Leetspeak substitutions (`0→o`, `@→a`, `5→s`)
+- Similarity to leaked/common passwords
+- Low character variety
+- Short-length penalties
 
-This project addresses the exact gap: most online password meters only check length and special characters, but attackers don’t crack passwords that way.
-So this tool evaluates passwords using real-world attacker logic, not textbook rules.
+It returns:
 
- Project Overview
+- **Score: 0–100**
+- **Rating: Weak / Moderate / Strong / Very Weak**
+- **Feedback explaining the weakness**
+- **Practical suggestions for improvement**
 
-Password Strength Auditor (But Smarter) is a Python-based intelligent password evaluation system that detects complex patterns often missed by traditional strength meters.
+---
 
-It identifies:
+## 🚀 Features
+- Smart pattern detection  
+- Leetspeak reverse-mapping  
+- Leaked-password similarity analysis  
+- Modular & readable Python code  
+- Clean CLI interface  
+- Easily expandable for future development  
 
-Disguised common passwords (e.g., p@55w0rd → “password”)
+---
 
-Keyboard sequences (qwerty, 12345, asdf)
+## 🧠 Project Structure
+Password_Strength_Auditor/
+│
+├── auditor.py # Main script with analysis logic
+├── subs.txt # Optional substitution map
+├── rockyou.txt # Mini leaked-password sample list
+├── README.md # Documentation
+└── ARCHITECTURE.md # Internal architecture & design
 
-Repeated characters
+---
 
-Low character variety
+## 🏗 Architecture Summary
+The system uses a modular functional architecture:
 
-Short length penalties
+- **normalize_password()**  
+  Handles substitution reversal (leetspeak → plain text)
 
-Similarity to leaked/common passwords
+- **contains_sequence()**  
+  Detects keyboard and number patterns
 
-Behavioral patterns that attackers exploit
+- **has_repeated_chars()**  
+  Finds repeated characters
 
-It returns a detailed score, rating, reasoning, and personalized suggestions.
+- **similar_to_leaked()**  
+  Matches against leaked/common passwords
 
-This makes it suitable for:
+- **get_password_score()**  
+  Main scoring engine
 
-Security tools
+- **get_suggestions()**  
+  Generates practical improvement tips
 
-Login systems
+This architecture makes the project easy to extend into web apps, APIs, GUIs, and enterprise systems.
 
-Onboarding flows
+---
 
-Web apps
-
-Internal IT tools
-
-Any authentication system that needs strong password enforcement
-
- Future Aspects & Scalability
-
-This project is purposely built with modular, extensible components, allowing you or any developer to expand it easily. Its future potential includes:
-
-1 Integration with Real Leaked-Password Datasets
-
-The current version uses a small built-in sample list (student-friendly).
-In the future, it can be integrated with massive breached-password databases like:
-
-HaveIBeenPwned API
-
-RockYou dataset
-
-Custom enterprise breach datasets
-
-This would make the auditor enterprise-grade.
+## 🔧 Installation
+```bash
+git clone https://github.com/your-username/password-strength-auditor.git
+cd password-strength-auditor
+python auditor.py
