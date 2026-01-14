@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://img.shields.io/badge/Password%20Strength%20Auditor-But%20Smarter-1f6feb?style=for-the-badge&logo=python&logoColor=white" />
+</p>
+
 # Password Strength Auditor (But Smarter)
 
 ## 🌍 Why This Project Is Needed Today
