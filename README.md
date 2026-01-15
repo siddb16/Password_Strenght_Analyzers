@@ -53,6 +53,7 @@ It returns:
 ---
 
 ## 🧠 Project Structure
+
 Password_Strength_Auditor/
 │
 ├── auditor.py # Main script with analysis logic
